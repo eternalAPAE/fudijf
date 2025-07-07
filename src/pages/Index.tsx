@@ -10,7 +10,7 @@ const Index = () => {
 
   const members = [
     { name: "Necro", role: "Founder", image: "https://files.catbox.moe/d4bm08.png", telegram: "@authorizationUA", quote: "?" },
-    { name: "hxl7", role: "Coder/Support", image: "https://files.catbox.moe/pkrjlz.png", telegram: "@poorint", quote: "fr" },
+    { name: "hxl7", role: "Coder/Support", image: "https://files.catbox.moe/pkrjlz.png", telegram: "@poorint", quote: "I took a second out my day to calm the fuck down, now i got one less second to do something what the fuck now" },
     { name: "resired", role: "Co - Founder", image: "https://files.catbox.moe/g3248n.jpg", telegram: "@resired", quote: "T?" },
     { name: "Wem", role: "Owner", image: "https://files.catbox.moe/ueblmu.jpg", telegram: "@wemURC", quote: "?" },
     { name: "faint", role: "Co Owner", image: "https://files.catbox.moe/4zy9oq.jpg", telegram: "@t", quote: "?" },
