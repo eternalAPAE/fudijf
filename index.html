@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>purge.sh</title>
   <style>
@@ -10,12 +10,14 @@
       padding: 0;
       box-sizing: border-box;
     }
+
     body {
       background: black;
       color: white;
       font-family: monospace;
       overflow: hidden;
     }
+
     .center-screen {
       height: 100vh;
       display: flex;
@@ -23,6 +25,7 @@
       align-items: center;
       flex-direction: column;
     }
+
     .enter-button {
       padding: 1rem 2rem;
       border: 2px solid white;
@@ -32,23 +35,32 @@
       cursor: pointer;
       transition: 0.3s;
     }
+
     .enter-button:hover {
       background: white;
       color: black;
     }
+
     .hidden {
       display: none;
     }
+
+    .carousel-container {
+      position: relative;
+      width: 100%;
+    }
+
     .member-carousel {
       display: flex;
       gap: 2rem;
       overflow-x: auto;
       padding: 2rem;
       scroll-snap-type: x mandatory;
-      background: black;
       height: 100vh;
       align-items: center;
+      scroll-behavior: smooth;
     }
+
     .member-card {
       background: rgba(255,255,255,0.05);
       border: 1px solid rgba(255,255,255,0.1);
@@ -59,9 +71,11 @@
       text-align: center;
       transition: transform 0.3s ease;
     }
+
     .member-card:hover {
       transform: scale(1.05);
     }
+
     .member-card img {
       width: 100px;
       height: 100px;
@@ -70,12 +84,14 @@
       margin-bottom: 1rem;
       border: 2px solid white;
     }
+
     .socials a {
       color: white;
       margin: 0 0.5rem;
       text-decoration: none;
       font-size: 0.9rem;
     }
+
     .info-box {
       padding: 2rem;
       background: black;
@@ -83,6 +99,33 @@
       font-family: monospace;
       text-align: center;
     }
+
+    .arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 2.5rem;
+      background: rgba(255, 255, 255, 0.05);
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 0.4rem 0.8rem;
+      cursor: pointer;
+      z-index: 100;
+      transition: box-shadow 0.3s ease;
+    }
+
+    .arrow:hover {
+      box-shadow: 0 0 15px white;
+    }
+
+    .arrow-left {
+      left: 10px;
+    }
+
+    .arrow-right {
+      right: 10px;
+    }
+
     audio {
       display: none;
     }
@@ -96,16 +139,20 @@
 
   <!-- Main Content -->
   <div id="main" class="hidden">
-    <div class="member-carousel">
-      <div class="member-card"><img src="https://files.catbox.moe/d4bm08.png"><h3>Necro</h3><p>Founder</p></div>
-      <div class="member-card"><img src="https://files.catbox.moe/ydp6oe.jpg"><h3>resired</h3><p>Co - Founder</p></div>
-      <div class="member-card"><img src="https://files.catbox.moe/ueblmu.jpg"><h3>Wem</h3><p>Owner</p></div>
-      <div class="member-card"><img src="https://files.catbox.moe/4zy9oq.jpg"><h3>faint</h3><p>Co Owner</p></div>
-      <div class="member-card"><img src="https://via.placeholder.com/100"><h3>search</h3><p>Member</p></div>
-      <div class="member-card"><img src="https://files.catbox.moe/t1nytw.jpg"><h3>frost</h3><p>Member</p></div>
-      <div class="member-card"><img src="https://files.catbox.moe/lc31bl.jpg"><h3>grief</h3><p>Member</p></div>
-      <div class="member-card"><img src=""><h3>Blue</h3><p>Member</p></div>
-      <div class="member-card"><img src=""><h3>Malice</h3><p>Partner + Member</p></div>
+    <div class="carousel-container">
+      <button class="arrow arrow-left" onclick="scrollCarousel(-1)">&#9664;</button>
+      <div id="carousel" class="member-carousel">
+        <div class="member-card"><img src="https://files.catbox.moe/d4bm08.png"><h3>Necro</h3><p>Founder</p></div>
+        <div class="member-card"><img src="https://files.catbox.moe/ydp6oe.jpg"><h3>resired</h3><p>Co - Founder</p></div>
+        <div class="member-card"><img src="https://files.catbox.moe/ueblmu.jpg"><h3>Wem</h3><p>Owner</p></div>
+        <div class="member-card"><img src="https://files.catbox.moe/4zy9oq.jpg"><h3>faint</h3><p>Co Owner</p></div>
+        <div class="member-card"><img src="https://via.placeholder.com/100"><h3>search</h3><p>Member</p></div>
+        <div class="member-card"><img src="https://files.catbox.moe/t1nytw.jpg"><h3>frost</h3><p>Member</p></div>
+        <div class="member-card"><img src="https://files.catbox.moe/lc31bl.jpg"><h3>grief</h3><p>Member</p></div>
+        <div class="member-card"><img src=""><h3>Blue</h3><p>Member</p></div>
+        <div class="member-card"><img src=""><h3>Malice</h3><p>Partner + Member</p></div>
+      </div>
+      <button class="arrow arrow-right" onclick="scrollCarousel(1)">&#9654;</button>
     </div>
 
     <!-- Info Section -->
@@ -130,6 +177,12 @@
     function enterSite() {
       document.getElementById('landing').classList.add('hidden');
       document.getElementById('main').classList.remove('hidden');
+    }
+
+    function scrollCarousel(direction) {
+      const carousel = document.getElementById('carousel');
+      const cardWidth = carousel.querySelector('.member-card').offsetWidth + 32; // card width + gap
+      carousel.scrollBy({ left: direction * cardWidth, behavior: 'smooth' });
     }
   </script>
 </body>
