@@ -12,7 +12,7 @@ const Index = () => {
     { name: "Necro", role: "Founder", image: "https://files.catbox.moe/d4bm08.png", telegram: "@authorizationUA", quote: "Do not compare yourself to others. If you do so, you are insulting yourself. -Adolf Hitler" },
     { name: "hxl7", role: "Coder/Support", image: "https://files.catbox.moe/pkrjlz.png", telegram: "@poorint", quote: "I took a second out my day to calm the fuck down, now i got one less second to do something what the fuck now" },
     { name: "resired", role: "Co - Founder", image: "https://files.catbox.moe/g3248n.jpg", telegram: "@resired", quote: "?" },
-    { name: "Wem", role: "Owner", image: "https://files.catbox.moe/ueblmu.jpg", telegram: "@wemURC", quote: "The greater the crime perpetrated by the leadership, the less likely it is that the people will ever believe their leaders to be capable of perpetrating such an event. - Adolf Hitler" },
+    { name: "Wem", role: "Owner", image: "https://files.catbox.moe/ueblmu.jpg", telegram: "@WemURC", quote: "The greater the crime perpetrated by the leadership, the less likely it is that the people will ever believe their leaders to be capable of perpetrating such an event. - Adolf Hitler" },
     { name: "faint", role: "Co Owner", image: "https://files.catbox.moe/4zy9oq.jpg", telegram: "@t", quote: "?" },
     { name: "search", role: "Member", image: "https://files.catbox.moe/search.jpg", telegram: "@SearchDestroys", quote: "?" },
     { name: "frost", role: "Member", image: "https://files.catbox.moe/t1nytw.jpg", telegram: "@frostmeds", quote: "ruining extortion" },
