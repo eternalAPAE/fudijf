@@ -42,20 +42,21 @@
 
     .enter-button {
       padding: 1.2rem 2.5rem;
-      border: 2px solid white;
+      background: transparent;
       color: white;
       font-size: 1.5rem;
-      background: transparent;
       cursor: pointer;
       transition: 0.3s;
       font-family: 'Orbitron', sans-serif;
       letter-spacing: 1px;
       text-transform: uppercase;
+      border: none;
     }
 
     .enter-button:hover {
       background: white;
       color: black;
+      border: none;
     }
 
     .hidden {
@@ -89,11 +90,11 @@
       scroll-snap-align: center;
       text-align: center;
       box-shadow: 0 0 20px transparent;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      transition: transform 0.5s ease, box-shadow 0.5s ease, flex 0.5s ease, opacity 0.5s ease;
+      flex-shrink: 0;
     }
 
     .member-card:hover {
-      transform: scale(1.05);
       box-shadow: 0 0 25px rgba(0, 255, 255, 0.3);
     }
 
@@ -120,6 +121,16 @@
       margin-top: 1rem;
       color: #00c4ff;
       font-size: 1rem;
+    }
+
+    .member-card.focused {
+      transform: scale(1.6);
+      z-index: 2;
+    }
+
+    .member-card:not(.focused) {
+      transform: scale(0.6);
+      opacity: 0.4;
     }
 
     .info-box {
@@ -171,12 +182,12 @@
 
   <!-- Background Video -->
   <video autoplay muted loop playsinline id="bg-video">
-    <source src="https://files.catbox.moe/9t4lzc.gif" type="video/webm">
+    <source src="https://files.catbox.moe/y4bz3h.webm" type="video/webm">
   </video>
 
   <!-- Landing Page -->
   <div id="landing" class="center-screen">
-    <button class="enter-button" onclick="enterSite()">ENTER NETWORK WITHOUT BORDERS</button>
+    <button class="enter-button" onclick="enterSite()">ENTER NETWORK</button>
   </div>
 
   <!-- Main Content -->
@@ -217,6 +228,7 @@
     function enterSite() {
       document.getElementById('landing').classList.add('hidden');
       document.getElementById('main').classList.remove('hidden');
+      updateFocusedCard();
     }
 
     function scrollCarousel(direction) {
@@ -226,7 +238,39 @@
         left: direction * cardWidth,
         behavior: 'smooth'
       });
+      setTimeout(updateFocusedCard, 500);
     }
+
+    function updateFocusedCard() {
+      const carousel = document.getElementById('carousel');
+      const cards = carousel.querySelectorAll('.member-card');
+      const carouselRect = carousel.getBoundingClientRect();
+      const centerX = carouselRect.left + carouselRect.width / 2;
+
+      let closestCard = null;
+      let minDistance = Infinity;
+
+      cards.forEach(card => {
+        const rect = card.getBoundingClientRect();
+        const cardCenter = rect.left + rect.width / 2;
+        const distance = Math.abs(centerX - cardCenter);
+        if (distance < minDistance) {
+          minDistance = distance;
+          closestCard = card;
+        }
+      });
+
+      cards.forEach(card => card.classList.remove('focused'));
+      if (closestCard) closestCard.classList.add('focused');
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const carousel = document.getElementById('carousel');
+      carousel.addEventListener('scroll', () => {
+        clearTimeout(carousel._scrollTimeout);
+        carousel._scrollTimeout = setTimeout(updateFocusedCard, 100);
+      });
+    });
   </script>
 </body>
 </html>
