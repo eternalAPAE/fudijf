@@ -1,4 +1,3 @@
-
 import { useState, useRef, useEffect } from 'react';
 import { Play, Pause, Volume2, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -27,13 +26,10 @@ const Index = () => {
   const membersPerPage = 3;
   const totalPages = Math.ceil(members.length / membersPerPage);
 
-  // Auto-play music when component mounts
   useEffect(() => {
     if (showMain && audioRef.current && !isPlaying) {
       audioRef.current.play().catch(console.error);
       setIsPlaying(true);
-      
-      
     }
   }, [showMain]);
 
@@ -72,14 +68,11 @@ const Index = () => {
   if (!showMain) {
     return (
       <div className="min-h-screen bg-black text-white font-mono flex items-center justify-center relative overflow-hidden">
-        {/* Background with subtle pattern */}
         <div className="absolute inset-0 bg-black">
           <div className="absolute inset-0 opacity-5 bg-gradient-to-br from-gray-900 via-black to-gray-900"></div>
         </div>
 
-        {/* Content */}
         <div className="relative z-10 text-center flex flex-col items-center">
-          {/* Hanging person image - removed pulse animation */}
           <div className="mb-12">
             <img 
               src="https://files.catbox.moe/0tgzx0.png" 
@@ -88,7 +81,6 @@ const Index = () => {
             />
           </div>
 
-          {/* Enter button with glow effect matching the reference */}
           <div className="relative">
             <button
               onClick={enterSite}
@@ -120,10 +112,8 @@ const Index = () => {
         backgroundRepeat: "no-repeat",
       }}
     >
-      {/* Dark overlay to match the theme */}
       <div className="absolute inset-0 bg-black opacity-60 z-0"></div>
 
-      {/* Audio controls */}
       <div className="fixed top-4 right-4 z-20 flex items-center gap-2">
         <Button
           onClick={toggleAudio}
@@ -136,9 +126,7 @@ const Index = () => {
         <Volume2 className="w-4 h-4 text-gray-400" />
       </div>
 
-      {/* Main content container */}
       <div className="relative z-10 min-h-screen flex flex-col items-center justify-center p-8">
-        {/* Navigation arrows */}
         <div className="absolute left-8 top-1/2 transform -translate-y-1/2 z-20">
           <Button
             onClick={prevPage}
@@ -163,7 +151,6 @@ const Index = () => {
           </Button>
         </div>
 
-        {/* Member cards grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto mb-16">
           {getCurrentMembers().map((member, index) => (
             <div
@@ -178,7 +165,6 @@ const Index = () => {
                     className="w-full h-full object-cover transition-all duration-300"
                     onError={(e) => {
                       console.log(`Failed to load image for ${member.name}: ${member.image}`);
-                      // Set a fallback placeholder
                       e.currentTarget.src = "https://via.placeholder.com/150x150/333333/ffffff?text=" + member.name.charAt(0);
                     }}
                     onLoad={() => {
@@ -203,7 +189,6 @@ const Index = () => {
           ))}
         </div>
 
-        {/* Page indicator */}
         {totalPages > 1 && (
           <div className="flex gap-2 mb-8">
             {Array.from({ length: totalPages }, (_, i) => (
@@ -222,7 +207,7 @@ const Index = () => {
       </div>
 
       <audio ref={audioRef} autoPlay loop>
-      <source src="https://files.catbox.moe/pchg8m.mp3" type="audio/mpeg" />
+        <source src="https://files.catbox.moe/pchg8m.mp3" type="audio/mpeg" />
       </audio>
     </div>
   );
