@@ -2,8 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>purge.sh</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>919</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Share+Tech+Mono&display=swap" rel="stylesheet">
   <style>
     * {
       margin: 0;
@@ -12,10 +13,23 @@
     }
 
     body {
-      background: black;
       color: white;
-      font-family: monospace;
-      overflow: hidden;
+      font-family: 'Share Tech Mono', monospace;
+      overflow-x: hidden;
+      background: black;
+    }
+
+    #bg-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      min-width: 100%;
+      min-height: 100%;
+      object-fit: cover;
+      z-index: -100;
+      opacity: 0.2;
+      filter: brightness(0.6) contrast(1.2);
+      pointer-events: none;
     }
 
     .center-screen {
@@ -27,13 +41,16 @@
     }
 
     .enter-button {
-      padding: 1rem 2rem;
+      padding: 1.2rem 2.5rem;
       border: 2px solid white;
       color: white;
-      font-size: 1.2rem;
+      font-size: 1.5rem;
       background: transparent;
       cursor: pointer;
       transition: 0.3s;
+      font-family: 'Orbitron', sans-serif;
+      letter-spacing: 1px;
+      text-transform: uppercase;
     }
 
     .enter-button:hover {
@@ -48,56 +65,67 @@
     .carousel-container {
       position: relative;
       width: 100%;
+      height: 100vh;
     }
 
     .member-carousel {
       display: flex;
-      gap: 2rem;
+      gap: 3rem;
       overflow-x: auto;
-      padding: 2rem;
+      padding: 4rem 3rem;
       scroll-snap-type: x mandatory;
-      height: 100vh;
-      align-items: center;
       scroll-behavior: smooth;
+      align-items: center;
+      height: 100%;
     }
 
     .member-card {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 10px;
-      padding: 1.5rem;
-      min-width: 250px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 20px;
+      padding: 2rem;
+      min-width: 350px;
+      max-width: 350px;
       scroll-snap-align: center;
       text-align: center;
-      transition: transform 0.3s ease;
+      box-shadow: 0 0 20px transparent;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
     .member-card:hover {
       transform: scale(1.05);
+      box-shadow: 0 0 25px rgba(0, 255, 255, 0.3);
     }
 
     .member-card img {
-      width: 100px;
-      height: 100px;
+      width: 150px;
+      height: 150px;
       border-radius: 50%;
       object-fit: cover;
-      margin-bottom: 1rem;
       border: 2px solid white;
+      margin-bottom: 1.5rem;
     }
 
-    .socials a {
-      color: white;
-      margin: 0 0.5rem;
-      text-decoration: none;
-      font-size: 0.9rem;
+    .member-card h3 {
+      font-size: 1.8rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .member-card p {
+      font-size: 1.1rem;
+      color: #ccc;
+    }
+
+    .member-card .telegram {
+      margin-top: 1rem;
+      color: #00c4ff;
+      font-size: 1rem;
     }
 
     .info-box {
       padding: 2rem;
-      background: black;
-      color: white;
-      font-family: monospace;
       text-align: center;
+      font-size: 1rem;
     }
 
     .arrow {
@@ -105,25 +133,33 @@
       top: 50%;
       transform: translateY(-50%);
       font-size: 2.5rem;
-      background: rgba(255, 255, 255, 0.05);
+      background: rgba(255, 255, 255, 0.1);
       color: white;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      padding: 0.4rem 0.8rem;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 8px;
+      padding: 0.5rem 1rem;
       cursor: pointer;
-      z-index: 100;
-      transition: box-shadow 0.3s ease;
+      z-index: 10;
+      transition: 0.3s ease;
+      user-select: none;
     }
 
     .arrow:hover {
-      box-shadow: 0 0 15px white;
+      box-shadow: 0 0 15px #00c4ff;
+      background: rgba(255, 255, 255, 0.2);
     }
 
     .arrow-left {
-      left: 10px;
+      left: 20px;
     }
 
     .arrow-right {
-      right: 10px;
+      right: 20px;
+    }
+
+    a {
+      color: #00c4ff;
+      text-decoration: none;
     }
 
     audio {
@@ -132,9 +168,15 @@
   </style>
 </head>
 <body>
+
+  <!-- Background Video -->
+  <video autoplay muted loop playsinline id="bg-video">
+    <source src="https://files.catbox.moe/9t4lzc.gif" type="video/webm">
+  </video>
+
   <!-- Landing Page -->
   <div id="landing" class="center-screen">
-    <button class="enter-button" onclick="enterSite()">ENTER PURGE.SH</button>
+    <button class="enter-button" onclick="enterSite()">ENTER NETWORK WITHOUT BORDERS</button>
   </div>
 
   <!-- Main Content -->
@@ -142,35 +184,33 @@
     <div class="carousel-container">
       <button class="arrow arrow-left" onclick="scrollCarousel(-1)">&#9664;</button>
       <div id="carousel" class="member-carousel">
-        <div class="member-card"><img src="https://files.catbox.moe/d4bm08.png"><h3>Necro</h3><p>Founder</p></div>
-        <div class="member-card"><img src="https://files.catbox.moe/ydp6oe.jpg"><h3>resired</h3><p>Co - Founder</p></div>
-        <div class="member-card"><img src="https://files.catbox.moe/ueblmu.jpg"><h3>Wem</h3><p>Owner</p></div>
-        <div class="member-card"><img src="https://files.catbox.moe/4zy9oq.jpg"><h3>faint</h3><p>Co Owner</p></div>
-        <div class="member-card"><img src="https://via.placeholder.com/100"><h3>search</h3><p>Member</p></div>
-        <div class="member-card"><img src="https://files.catbox.moe/t1nytw.jpg"><h3>frost</h3><p>Member</p></div>
-        <div class="member-card"><img src="https://files.catbox.moe/lc31bl.jpg"><h3>grief</h3><p>Member</p></div>
-        <div class="member-card"><img src=""><h3>Blue</h3><p>Member</p></div>
-        <div class="member-card"><img src=""><h3>Malice</h3><p>Partner + Member</p></div>
+        <div class="member-card"><img src="https://files.catbox.moe/d4bm08.png"><h3>Necro</h3><p>Founder</p><div class="telegram">@knifeplaying</div></div>
+        <div class="member-card"><img src="https://files.catbox.moe/ydp6oe.jpg"><h3>Resired</h3><p>Co-Founder</p><div class="telegram">@resired</div></div>
+        <div class="member-card"><img src="https://files.catbox.moe/ueblmu.jpg"><h3>Wem</h3><p>Owner</p><div class="telegram">@wemuser</div></div>
+        <div class="member-card"><img src="https://files.catbox.moe/4zy9oq.jpg"><h3>Faint</h3><p>Co-Owner</p><div class="telegram">@faintghost</div></div>
+        <div class="member-card"><img src="https://files.catbox.moe/t1nytw.jpg"><h3>Frost</h3><p>Member</p><div class="telegram">@frostcoded</div></div>
+        <div class="member-card"><img src="https://files.catbox.moe/lc31bl.jpg"><h3>Grief</h3><p>Member</p><div class="telegram">@gr1efnet</div></div>
+        <div class="member-card"><img src="https://via.placeholder.com/150"><h3>Search</h3><p>Member</p><div class="telegram">@searchcore</div></div>
+        <div class="member-card"><img src="https://via.placeholder.com/150"><h3>Blue</h3><p>Member</p><div class="telegram">@bluesignal</div></div>
+        <div class="member-card"><img src="https://via.placeholder.com/150"><h3>Malice</h3><p>Partner + Member</p><div class="telegram">@malicedev</div></div>
       </div>
       <button class="arrow arrow-right" onclick="scrollCarousel(1)">&#9654;</button>
     </div>
 
-    <!-- Info Section -->
     <div class="info-box">
-      <p><strong>Official purge.sh AE/AP channel:</strong><br>
-      Any other channels or people impersonating purge.sh are LARPS.<br>
-      The link will always be: <a href="https://t.me/purgeanc" target="_blank">https://t.me/purgeanc</a></p>
-
-      <br><p>Our purpose is to put a full stop to extortion and pedophilia.<br>
-      Our members have been chosen carefully and tested properly.<br>
-      Apply today at <a href="https://t.me/authorizationUA" target="_blank">@authorizationUA</a> or <a href="https://t.me/resired" target="_blank">@resired</a>.</p>
+      <p><strong>⚠️ OFFICIAL 919 AE/AP channel:</strong><br>
+      Any impersonators are LARPS.<br>
+      Link: <a href="https://t.me/purgeanc" target="_blank">https://t.me/purgeanc</a></p>
+      <br>
+      <p>We fight extortion & pedophilia.<br>
+      Members are tested and verified.<br>
+      Apply at <a href="https://t.me/authorizationUA" target="_blank">@authorizationUA</a> or <a href="https://t.me/resired" target="_blank">@resired</a></p>
     </div>
   </div>
 
-  <!-- Background Music -->
+  <!-- Optional Background Music -->
   <audio autoplay loop>
     <source src="https://files.catbox.moe/conwsg.mp3" type="audio/mpeg">
-    Your browser does not support the audio element.
   </audio>
 
   <script>
@@ -181,8 +221,11 @@
 
     function scrollCarousel(direction) {
       const carousel = document.getElementById('carousel');
-      const cardWidth = carousel.querySelector('.member-card').offsetWidth + 32; // card width + gap
-      carousel.scrollBy({ left: direction * cardWidth, behavior: 'smooth' });
+      const cardWidth = carousel.querySelector('.member-card').offsetWidth + 48;
+      carousel.scrollBy({
+        left: direction * cardWidth,
+        behavior: 'smooth'
+      });
     }
   </script>
 </body>
