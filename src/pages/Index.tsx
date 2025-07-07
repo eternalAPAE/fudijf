@@ -15,7 +15,7 @@ const Index = () => {
     { name: "Wem", role: "Owner", image: "https://files.catbox.moe/ueblmu.jpg", telegram: "@WemURC", quote: "The greater the crime perpetrated by the leadership, the less likely it is that the people will ever believe their leaders to be capable of perpetrating such an event. - Adolf Hitler" },
     { name: "faint", role: "Co Owner", image: "https://files.catbox.moe/4zy9oq.jpg", telegram: "@t", quote: "?" },
     { name: "search", role: "Member", image: "https://files.catbox.moe/search.jpg", telegram: "@SearchDestroys", quote: "?" },
-    { name: "frost", role: "Member", image: "https://files.catbox.moe/t1nytw.jpg", telegram: "@frostmeds", quote: "ruining extortion" },
+    { name: "frost", role: "Member", image: "https://files.catbox.moe/t1nytw.jpg", telegram: "@frostmeds", quote: "bringing terror upon extortion" },
     { name: "grief", role: "Member", image: "https://files.catbox.moe/g76f9w.jpg", telegram: "@greif919", quote: "We must forget the concept of comradeship between soldiers. A Communist is no comrade before or after this battle. This is a war of annihilation -Adolf Hitler" },
     { name: "Blue", role: "Member", image: "https://files.catbox.moe/8l502c.jpg", telegram: "@blewchews", quote: "?" },
     { name: "Rabbit", role: "Member", image: "https://files.catbox.moe/2my5qm.jpg", telegram: "@deathtoextorts", quote: "?." },
