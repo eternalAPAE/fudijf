@@ -17,7 +17,7 @@ const Index = () => {
     { name: "faint", role: "Co Owner", image: "https://files.catbox.moe/4zy9oq.jpg", telegram: "@t" },
     { name: "search", role: "Member", image: "https://files.catbox.moe/search.jpg", telegram: "@SearchDestroys" },
     { name: "frost", role: "Member", image: "https://files.catbox.moe/t1nytw.jpg", telegram: "@frostmeds" },
-    { name: "grief", role: "Member", image: "https://files.catbox.moe/lc31bl.jpg", telegram: "@greif919" },
+    { name: "grief", role: "Member", image: "https://files.catbox.moe/g76f9w.jpg", telegram: "@greif919" },
     { name: "Blue", role: "Member", image: "https://files.catbox.moe/8l502c.jpg", telegram: "@blewchews" },
     { name: "Blue", role: "Member", image: "https://files.catbox.moe/2my5qm.jpg", telegram: "@deathtoextorts" },
     { name: "Malice", role: "Partner + Member", image: "https://files.catbox.moe/xtk0vy.jpg", telegram: "@KillingThePedos" }
