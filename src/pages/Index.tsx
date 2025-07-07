@@ -12,7 +12,7 @@ const Index = () => {
   const members = [
     { name: "Necro", role: "Founder", image: "https://files.catbox.moe/d4bm08.png", telegram: "@authorizationUA" },
     { name: "hxl7", role: "Coder/Support", image: "https://files.catbox.moe/pkrjlz.png", telegram: "@poorint" },
-    { name: "resired", role: "Co - Founder", image: "https://files.catbox.moe/ydp6oe.jpg", telegram: "@resired" },
+    { name: "resired", role: "Co - Founder", image: "https://files.catbox.moe/g3248n.jpg", telegram: "@resired" },
     { name: "Wem", role: "Owner", image: "https://files.catbox.moe/ueblmu.jpg", telegram: "@wemURC" },
     { name: "faint", role: "Co Owner", image: "https://files.catbox.moe/4zy9oq.jpg", telegram: "@t" },
     { name: "search", role: "Member", image: "https://files.catbox.moe/search.jpg", telegram: "@SearchDestroys" },
@@ -20,6 +20,7 @@ const Index = () => {
     { name: "grief", role: "Member", image: "https://files.catbox.moe/g76f9w.jpg", telegram: "@greif919" },
     { name: "Blue", role: "Member", image: "https://files.catbox.moe/8l502c.jpg", telegram: "@blewchews" },
     { name: "Blue", role: "Member", image: "https://files.catbox.moe/2my5qm.jpg", telegram: "@deathtoextorts" },
+    { name: "opsex", role: "Member", image: "https://files.catbox.moe/3zw194.jpg", telegram: "" },
     { name: "Malice", role: "Partner + Member", image: "https://files.catbox.moe/xtk0vy.jpg", telegram: "@KillingThePedos" }
   ];
 
