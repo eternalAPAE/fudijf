@@ -9,18 +9,18 @@ const Index = () => {
   const audioRef = useRef<HTMLAudioElement>(null);
 
   const members = [
-    { name: "Necro", role: "Founder", image: "https://files.catbox.moe/d4bm08.png", telegram: "@authorizationUA" },
-    { name: "hxl7", role: "Coder/Support", image: "https://files.catbox.moe/pkrjlz.png", telegram: "@poorint" },
-    { name: "resired", role: "Co - Founder", image: "https://files.catbox.moe/g3248n.jpg", telegram: "@resired" },
-    { name: "Wem", role: "Owner", image: "https://files.catbox.moe/ueblmu.jpg", telegram: "@wemURC" },
-    { name: "faint", role: "Co Owner", image: "https://files.catbox.moe/4zy9oq.jpg", telegram: "@t" },
-    { name: "search", role: "Member", image: "https://files.catbox.moe/search.jpg", telegram: "@SearchDestroys" },
-    { name: "frost", role: "Member", image: "https://files.catbox.moe/t1nytw.jpg", telegram: "@frostmeds" },
-    { name: "grief", role: "Member", image: "https://files.catbox.moe/g76f9w.jpg", telegram: "@greif919" },
-    { name: "Blue", role: "Member", image: "https://files.catbox.moe/8l502c.jpg", telegram: "@blewchews" },
-    { name: "Blue", role: "Member", image: "https://files.catbox.moe/2my5qm.jpg", telegram: "@deathtoextorts" },
-    { name: "opsex", role: "Member", image: "https://files.catbox.moe/3zw194.jpg", telegram: "" },
-    { name: "Malice", role: "Partner + Member", image: "https://files.catbox.moe/xtk0vy.jpg", telegram: "@KillingThePedos" }
+    { name: "Necro", role: "Founder", image: "https://files.catbox.moe/d4bm08.png", telegram: "@authorizationUA", quote: "?" },
+    { name: "hxl7", role: "Coder/Support", image: "https://files.catbox.moe/pkrjlz.png", telegram: "@poorint", quote: "fr" },
+    { name: "resired", role: "Co - Founder", image: "https://files.catbox.moe/g3248n.jpg", telegram: "@resired", quote: "T?" },
+    { name: "Wem", role: "Owner", image: "https://files.catbox.moe/ueblmu.jpg", telegram: "@wemURC", quote: "?" },
+    { name: "faint", role: "Co Owner", image: "https://files.catbox.moe/4zy9oq.jpg", telegram: "@t", quote: "?" },
+    { name: "search", role: "Member", image: "https://files.catbox.moe/search.jpg", telegram: "@SearchDestroys", quote: "?" },
+    { name: "frost", role: "Member", image: "https://files.catbox.moe/t1nytw.jpg", telegram: "@frostmeds", quote: "?" },
+    { name: "grief", role: "Member", image: "https://files.catbox.moe/g76f9w.jpg", telegram: "@greif919", quote: "?" },
+    { name: "Blue", role: "Member", image: "https://files.catbox.moe/8l502c.jpg", telegram: "@blewchews", quote: "?" },
+    { name: "Blue", role: "Member", image: "https://files.catbox.moe/2my5qm.jpg", telegram: "@deathtoextorts", quote: "?." },
+    { name: "opsex", role: "Member", image: "https://files.catbox.moe/3zw194.jpg", telegram: "", quote: "?" },
+    { name: "Malice", role: "Partner + Member", image: "https://files.catbox.moe/xtk0vy.jpg", telegram: "@KillingThePedos", quote: "?" }
   ];
 
   const membersPerPage = 3;
@@ -128,33 +128,24 @@ const Index = () => {
 
       <div className="relative z-10 min-h-screen flex flex-col items-center justify-center p-8">
         <div className="absolute left-8 top-1/2 transform -translate-y-1/2 z-20">
-          <Button
-            onClick={prevPage}
-            size="icon"
-            variant="outline"
-            className="border-gray-600 bg-black/70 text-gray-300 hover:bg-gray-800/70 hover:text-white hover:border-gray-400 rounded-none w-12 h-12"
-            disabled={totalPages <= 1}
-          >
+          <Button onClick={prevPage} size="icon" variant="outline" className="border-gray-600 bg-black/70 text-gray-300 hover:bg-gray-800/70 hover:text-white hover:border-gray-400 rounded-none w-12 h-12">
             <ChevronLeft className="w-6 h-6" />
           </Button>
         </div>
 
         <div className="absolute right-8 top-1/2 transform -translate-y-1/2 z-20">
-          <Button
-            onClick={nextPage}
-            size="icon"
-            variant="outline"
-            className="border-gray-600 bg-black/70 text-gray-300 hover:bg-gray-800/70 hover:text-white hover:border-gray-400 rounded-none w-12 h-12"
-            disabled={totalPages <= 1}
-          >
+          <Button onClick={nextPage} size="icon" variant="outline" className="border-gray-600 bg-black/70 text-gray-300 hover:bg-gray-800/70 hover:text-white hover:border-gray-400 rounded-none w-12 h-12">
             <ChevronRight className="w-6 h-6" />
           </Button>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto mb-16">
           {getCurrentMembers().map((member, index) => (
-            <div
+            <a
               key={index}
+              href={`https://t.me/${member.telegram.replace('@', '')}`}
+              target="_blank"
+              rel="noopener noreferrer"
               className="member-card bg-black/80 border border-gray-600 rounded-none p-8 min-w-[300px] text-center transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-gray-500/20 hover:border-gray-400 hover:bg-black/90 group cursor-pointer backdrop-blur-sm"
             >
               <div className="relative mb-6">
@@ -164,28 +155,28 @@ const Index = () => {
                     alt={member.name}
                     className="w-full h-full object-cover transition-all duration-300"
                     onError={(e) => {
-                      console.log(`Failed to load image for ${member.name}: ${member.image}`);
-                      e.currentTarget.src = "https://via.placeholder.com/150x150/333333/ffffff?text=" + member.name.charAt(0);
-                    }}
-                    onLoad={() => {
-                      console.log(`Successfully loaded image for ${member.name}`);
+                      e.currentTarget.src = `https://via.placeholder.com/150x150/333333/ffffff?text=${member.name.charAt(0)}`;
                     }}
                   />
                 </div>
               </div>
 
-              <h3 className="text-2xl font-bold mb-2 group-hover:text-gray-200 transition-colors duration-300 uppercase tracking-wider text-gray-300">
+              <h3 className="text-2xl font-bold mb-1 group-hover:text-gray-200 transition-colors duration-300 uppercase tracking-wider text-gray-300">
                 {member.name}
               </h3>
 
-              <p className="text-gray-500 group-hover:text-gray-400 transition-colors duration-300 text-sm uppercase tracking-wide font-mono mb-2">
+              <p className="text-gray-500 group-hover:text-gray-400 transition-colors duration-300 text-sm uppercase tracking-wide font-mono mb-1">
                 {member.role}
+              </p>
+
+              <p className="italic text-gray-400 group-hover:text-gray-300 transition-colors duration-300 text-sm mb-2">
+                {member.quote}
               </p>
 
               <div className="text-gray-400 group-hover:text-gray-300 transition-colors duration-300 text-xs font-mono">
                 {member.telegram}
               </div>
-            </div>
+            </a>
           ))}
         </div>
 
