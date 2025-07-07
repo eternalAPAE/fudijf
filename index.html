@@ -85,13 +85,18 @@
       border: 1px solid rgba(255, 255, 255, 0.15);
       border-radius: 20px;
       padding: 2rem;
-      min-width: 350px;
-      max-width: 350px;
+      min-width: 420px;
+      max-width: 420px;
+      height: 500px;
       scroll-snap-align: center;
       text-align: center;
       box-shadow: 0 0 20px transparent;
-      transition: transform 0.5s ease, box-shadow 0.5s ease, flex 0.5s ease, opacity 0.5s ease;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
       flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
     }
 
     .member-card:hover {
@@ -99,8 +104,8 @@
     }
 
     .member-card img {
-      width: 150px;
-      height: 150px;
+      width: 180px;
+      height: 180px;
       border-radius: 50%;
       object-fit: cover;
       border: 2px solid white;
@@ -121,16 +126,6 @@
       margin-top: 1rem;
       color: #00c4ff;
       font-size: 1rem;
-    }
-
-    .member-card.focused {
-      transform: scale(1.6);
-      z-index: 2;
-    }
-
-    .member-card:not(.focused) {
-      transform: scale(0.6);
-      opacity: 0.4;
     }
 
     .info-box {
@@ -228,7 +223,6 @@
     function enterSite() {
       document.getElementById('landing').classList.add('hidden');
       document.getElementById('main').classList.remove('hidden');
-      updateFocusedCard();
     }
 
     function scrollCarousel(direction) {
@@ -238,39 +232,7 @@
         left: direction * cardWidth,
         behavior: 'smooth'
       });
-      setTimeout(updateFocusedCard, 500);
     }
-
-    function updateFocusedCard() {
-      const carousel = document.getElementById('carousel');
-      const cards = carousel.querySelectorAll('.member-card');
-      const carouselRect = carousel.getBoundingClientRect();
-      const centerX = carouselRect.left + carouselRect.width / 2;
-
-      let closestCard = null;
-      let minDistance = Infinity;
-
-      cards.forEach(card => {
-        const rect = card.getBoundingClientRect();
-        const cardCenter = rect.left + rect.width / 2;
-        const distance = Math.abs(centerX - cardCenter);
-        if (distance < minDistance) {
-          minDistance = distance;
-          closestCard = card;
-        }
-      });
-
-      cards.forEach(card => card.classList.remove('focused'));
-      if (closestCard) closestCard.classList.add('focused');
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-      const carousel = document.getElementById('carousel');
-      carousel.addEventListener('scroll', () => {
-        clearTimeout(carousel._scrollTimeout);
-        carousel._scrollTimeout = setTimeout(updateFocusedCard, 100);
-      });
-    });
   </script>
 </body>
 </html>
