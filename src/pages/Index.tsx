@@ -14,14 +14,14 @@ const Index = () => {
     { name: "hxl7", role: "Coder/Support", image: "https://files.catbox.moe/pkrjlz.png", telegram: "@poorint", quote: "I took a second out my day to calm the fuck down, now i got one less second to do something what the fuck now" },
     { name: "resired", role: "Co - Founder", image: "https://files.catbox.moe/g3248n.jpg", telegram: "@resired", quote: "The truth is that everyone will eventually fall and understand what they have done wrong and feel their own sins... Stop before it's too late, or plead with God later. - resired" },
     { name: "Wem", role: "Owner", image: "https://files.catbox.moe/ueblmu.jpg", telegram: "@WemURC", quote: "The greater the crime perpetrated by the leadership, the less likely it is that the people will ever believe their leaders to be capable of perpetrating such an event. - Adolf Hitler" },
-    { name: "faint", role: "Co Owner", image: "https://files.catbox.moe/4zy9oq.jpg", telegram: "@faintend", quote: "?" },
+    { name: "faint", role: "Co Owner", image: "https://files.catbox.moe/btdwru.jpg", telegram: "@faintend", quote: "open source intelligence" },
     { name: "search", role: "Member", image: "https://files.catbox.moe/6yq44v.jpg", telegram: "@SearchDestroys", quote: "+ ANUBISS ✛ Shield ✛ 881| #AE #AP" },
     { name: "frost", role: "Member", image: "https://files.catbox.moe/t1nytw.jpg", telegram: "@frostmeds", quote: "bringing terror upon extortion" },
     { name: "grief", role: "Member", image: "https://files.catbox.moe/g76f9w.jpg", telegram: "@greif919", quote: "We must forget the concept of comradeship between soldiers. A Communist is no comrade before or after this battle. This is a war of annihilation -Adolf Hitler" },
-    { name: "Blue", role: "Member", image: "https://files.catbox.moe/8l502c.jpg", telegram: "@blewchews", quote: "?" },
-    { name: "Rabbit", role: "Member", image: "https://files.catbox.moe/2my5qm.jpg", telegram: "@deathtoextorts", quote: "?." },
-    { name: "opsex", role: "Member", image: "https://files.catbox.moe/3zw194.jpg", telegram: "", quote: "?" },
-    { name: "Malice", role: "Partner + Member", image: "https://files.catbox.moe/xtk0vy.jpg", telegram: "@KillingThePedos", quote: "?" }
+    { name: "Blue", role: "Member", image: "https://files.catbox.moe/8l502c.jpg", telegram: "@blewchews", quote: "" },
+    { name: "Rabbit", role: "Member", image: "https://files.catbox.moe/2my5qm.jpg", telegram: "@deathtoextorts", quote: "." },
+    { name: "opsex", role: "Member", image: "https://files.catbox.moe/3zw194.jpg", telegram: "", quote: "" },
+    { name: "Malice", role: "Partner + Member", image: "https://files.catbox.moe/xtk0vy.jpg", telegram: "@KillingThePedos", quote: "" }
   ];
 
   useEffect(() => {
@@ -109,7 +109,7 @@ const Index = () => {
           variant="outline"
           className="border-white/50 bg-black/70 text-white hover:bg-white/20 hover:text-white hover:border-white"
         >
-          {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
+          {isPlaying  <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
         </Button>
         <Volume2 className="w-4 h-4 text-white" />
       </div>
