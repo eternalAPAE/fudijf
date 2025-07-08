@@ -9,7 +9,7 @@ const Index = () => {
   const audioRef = useRef<HTMLAudioElement>(null);
 
   const members = [
-    { name: "Necro", role: "Founder", image: "https://files.catbox.moe/d4bm08.png", telegram: "@authorizationUA", quote: "Do not compare yourself to others. If you do so, you are insulting yourself. -Adolf Hitler" },
+    { name: "Authorization", role: "Founder", image: "https://files.catbox.moe/d4bm08.png", telegram: "@authorizationUA", quote: "Do not compare yourself to others. If you do so, you are insulting yourself. -Adolf Hitler" },
     { name: "hxl7", role: "Coder/Support", image: "https://files.catbox.moe/pkrjlz.png", telegram: "@poorint", quote: "I took a second out my day to calm the fuck down, now i got one less second to do something what the fuck now" },
     { name: "resired", role: "Co - Founder", image: "https://files.catbox.moe/g3248n.jpg", telegram: "@resired", quote: "The truth is that everyone will eventually fall and understand what they have done wrong and feel their own sins... Stop before it's too late, or plead with God later. - resired" },
     { name: "Wem", role: "Owner", image: "https://files.catbox.moe/ueblmu.jpg", telegram: "@WemURC", quote: "The greater the crime perpetrated by the leadership, the less likely it is that the people will ever believe their leaders to be capable of perpetrating such an event. - Adolf Hitler" },
