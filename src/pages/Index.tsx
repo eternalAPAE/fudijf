@@ -1,11 +1,12 @@
+
 import { useState, useRef, useEffect } from 'react';
-import { Play, Pause, Volume2, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Play, Pause, Volume2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { UserCardDashboard } from '@/components/UserCardDashboard';
 
 const Index = () => {
   const [showMain, setShowMain] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [currentPage, setCurrentPage] = useState(0);
   const audioRef = useRef<HTMLAudioElement>(null);
 
   const members = [
@@ -22,9 +23,6 @@ const Index = () => {
     { name: "opsex", role: "Member", image: "https://files.catbox.moe/3zw194.jpg", telegram: "", quote: "?" },
     { name: "Malice", role: "Partner + Member", image: "https://files.catbox.moe/xtk0vy.jpg", telegram: "@KillingThePedos", quote: "?" }
   ];
-
-  const membersPerPage = 3;
-  const totalPages = Math.ceil(members.length / membersPerPage);
 
   useEffect(() => {
     if (showMain && audioRef.current && !isPlaying) {
@@ -50,19 +48,6 @@ const Index = () => {
       }
       setIsPlaying(!isPlaying);
     }
-  };
-
-  const nextPage = () => {
-    setCurrentPage((prev) => (prev + 1) % totalPages);
-  };
-
-  const prevPage = () => {
-    setCurrentPage((prev) => (prev - 1 + totalPages) % totalPages);
-  };
-
-  const getCurrentMembers = () => {
-    const start = currentPage * membersPerPage;
-    return members.slice(start, start + membersPerPage);
   };
 
   if (!showMain) {
@@ -96,7 +81,7 @@ const Index = () => {
         </div>
 
         <audio ref={audioRef} loop>
-          <source src="https://files.catbox.moe/52fbg0.mp3" type="audio/mpeg" />
+          <source src="https://files.catbox.moe/pchg8m.mp3" type="audio/mpeg" />
         </audio>
       </div>
     );
@@ -105,97 +90,32 @@ const Index = () => {
   return (
     <div
       className="min-h-screen text-white font-mono relative overflow-hidden"
-      style={{
-        backgroundImage: "url('/test.gif')",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
+      style={{ 
+        backgroundColor: '#000000',
+        backgroundImage: 'url(https://files.catbox.moe/9t4lzc.gif)',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat'
       }}
     >
-      <div className="absolute inset-0 bg-black opacity-60 z-0"></div>
+      {/* Dark overlay */}
+      <div className="absolute inset-0 bg-black/60"></div>
 
-      <div className="fixed top-4 right-4 z-20 flex items-center gap-2">
+      {/* Audio Controls */}
+      <div className="fixed top-4 right-4 z-30 flex items-center gap-2">
         <Button
           onClick={toggleAudio}
           size="sm"
           variant="outline"
-          className="border-gray-600 bg-black/70 text-gray-300 hover:bg-gray-800/70 hover:text-white hover:border-gray-400"
+          className="border-white/50 bg-black/70 text-white hover:bg-white/20 hover:text-white hover:border-white"
         >
           {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
         </Button>
-        <Volume2 className="w-4 h-4 text-gray-400" />
+        <Volume2 className="w-4 h-4 text-white" />
       </div>
 
-      <div className="relative z-10 min-h-screen flex flex-col items-center justify-center p-8">
-        <div className="absolute left-8 top-1/2 transform -translate-y-1/2 z-20">
-          <Button onClick={prevPage} size="icon" variant="outline" className="border-gray-600 bg-black/70 text-gray-300 hover:bg-gray-800/70 hover:text-white hover:border-gray-400 rounded-none w-12 h-12">
-            <ChevronLeft className="w-6 h-6" />
-          </Button>
-        </div>
-
-        <div className="absolute right-8 top-1/2 transform -translate-y-1/2 z-20">
-          <Button onClick={nextPage} size="icon" variant="outline" className="border-gray-600 bg-black/70 text-gray-300 hover:bg-gray-800/70 hover:text-white hover:border-gray-400 rounded-none w-12 h-12">
-            <ChevronRight className="w-6 h-6" />
-          </Button>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto mb-16">
-          {getCurrentMembers().map((member, index) => (
-            <a
-              key={index}
-              href={`https://t.me/${member.telegram.replace('@', '')}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="member-card bg-black/80 border border-gray-600 rounded-none p-8 min-w-[300px] text-center transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-gray-500/20 hover:border-gray-400 hover:bg-black/90 group cursor-pointer backdrop-blur-sm"
-            >
-              <div className="relative mb-6">
-                <div className="w-32 h-32 mx-auto rounded-none overflow-hidden border-2 border-gray-600 group-hover:border-gray-400 transition-all duration-300">
-                  <img
-                    src={member.image}
-                    alt={member.name}
-                    className="w-full h-full object-cover transition-all duration-300"
-                    onError={(e) => {
-                      e.currentTarget.src = `https://via.placeholder.com/150x150/333333/ffffff?text=${member.name.charAt(0)}`;
-                    }}
-                  />
-                </div>
-              </div>
-
-              <h3 className="text-2xl font-bold mb-1 group-hover:text-gray-200 transition-colors duration-300 uppercase tracking-wider text-gray-300">
-                {member.name}
-              </h3>
-
-              <p className="text-gray-500 group-hover:text-gray-400 transition-colors duration-300 text-sm uppercase tracking-wide font-mono mb-1">
-                {member.role}
-              </p>
-
-              <p className="italic text-gray-400 group-hover:text-gray-300 transition-colors duration-300 text-sm mb-2">
-                {member.quote}
-              </p>
-
-              <div className="text-gray-400 group-hover:text-gray-300 transition-colors duration-300 text-xs font-mono">
-                {member.telegram}
-              </div>
-            </a>
-          ))}
-        </div>
-
-        {totalPages > 1 && (
-          <div className="flex gap-2 mb-8">
-            {Array.from({ length: totalPages }, (_, i) => (
-              <button
-                key={i}
-                onClick={() => setCurrentPage(i)}
-                className={`w-3 h-3 rounded-none transition-all duration-300 ${
-                  i === currentPage
-                    ? 'bg-gray-400 shadow-lg shadow-gray-400/50'
-                    : 'bg-gray-700 hover:bg-gray-600'
-                }`}
-              />
-            ))}
-          </div>
-        )}
-      </div>
+      {/* User Dashboard */}
+      <UserCardDashboard users={members} usersPerPage={3} />
 
       <audio ref={audioRef} autoPlay loop>
         <source src="https://files.catbox.moe/pchg8m.mp3" type="audio/mpeg" />
