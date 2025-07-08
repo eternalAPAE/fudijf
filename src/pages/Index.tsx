@@ -92,7 +92,7 @@ const Index = () => {
       className="min-h-screen text-white font-mono relative overflow-hidden"
       style={{ 
         backgroundColor: '#000000',
-        backgroundImage: 'url(https://files.catbox.moe/9t4lzc.gif)',
+        backgroundImage: 'url(https://files.catbox.moe/1nomeh.gif)',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat'
