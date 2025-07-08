@@ -1,4 +1,3 @@
-
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 import { Card, CardContent } from '@/components/ui/card';
 
@@ -57,14 +56,14 @@ export const UserCard = ({ user, isActive }: UserCardProps) => {
       
       <Card 
         className={`
-          relative w-full max-w-md mx-auto bg-black/5 
-          border border-white/5 backdrop-blur-xl transition-all duration-500 ease-out
+          relative w-full max-w-md mx-auto bg-black/10 
+          border border-white/10 backdrop-blur-xl transition-all duration-500 ease-out
           ${isActive ? 'scale-100 opacity-100' : 'scale-95 opacity-0 pointer-events-none'}
-          hover:bg-black/10 hover:border-white/10 glitch-card
+          hover:bg-black/15 hover:border-white/15 glitch-card
         `}
         style={{
           boxShadow: '0 0 30px rgba(255, 255, 255, 0.02), inset 0 1px 0 rgba(255, 255, 255, 0.02)',
-          background: 'rgba(0, 0, 0, 0.05)',
+          background: 'rgba(0, 0, 0, 0.1)',
           backdropFilter: 'blur(20px)',
         }}
       >
@@ -89,7 +88,7 @@ export const UserCard = ({ user, isActive }: UserCardProps) => {
           {/* Username and Role with Enhanced Glitch Effect */}
           <div className="space-y-2">
             <h2 className="text-3xl font-mono font-bold text-white relative glitch-text">
-              @{user.telegram.replace('@', '')}
+              {user.name}
             </h2>
             <p className="text-lg font-mono text-gray-400">
               {user.role}
