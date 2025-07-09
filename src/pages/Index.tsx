@@ -109,7 +109,7 @@ const Index = () => {
           variant="outline"
           className="border-white/50 bg-black/70 text-white hover:bg-white/20 hover:text-white hover:border-white"
         >
-          {isPlaying  <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
+          {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
         </Button>
         <Volume2 className="w-4 h-4 text-white" />
       </div>
