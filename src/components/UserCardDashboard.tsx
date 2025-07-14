@@ -28,7 +28,6 @@ export const UserCardDashboard = ({ users, usersPerPage = 3 }: UserCardDashboard
     setIsTransitioning(true);
     setCurrentPage(newPage);
     
-    // Reset transition state after animation
     setTimeout(() => setIsTransitioning(false), 300);
   }, [isTransitioning, totalPages]);
 
@@ -40,7 +39,6 @@ export const UserCardDashboard = ({ users, usersPerPage = 3 }: UserCardDashboard
     handleNavigation(currentPage + 1);
   }, [currentPage, handleNavigation]);
 
-  // Keyboard navigation
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'ArrowLeft') {
@@ -56,7 +54,6 @@ export const UserCardDashboard = ({ users, usersPerPage = 3 }: UserCardDashboard
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [handlePrevious, handleNext]);
 
-  // Preload adjacent page images for performance
   useEffect(() => {
     const preloadImages = () => {
       const pagesToPreload = [currentPage - 1, currentPage + 1].filter(page => page >= 0 && page < totalPages);
@@ -77,7 +74,6 @@ export const UserCardDashboard = ({ users, usersPerPage = 3 }: UserCardDashboard
 
   return (
     <div className="relative w-full min-h-screen flex items-center justify-center p-4">
-      {/* Navigation Arrows */}
       <NavigationArrows
         onPrevious={handlePrevious}
         onNext={handleNext}
@@ -85,7 +81,6 @@ export const UserCardDashboard = ({ users, usersPerPage = 3 }: UserCardDashboard
         canGoNext={currentPage < totalPages - 1}
       />
 
-      {/* User Cards Container */}
       <div className="relative w-full max-w-6xl">
         <div className={`
           grid gap-6 transition-all duration-300 ease-out
@@ -95,11 +90,11 @@ export const UserCardDashboard = ({ users, usersPerPage = 3 }: UserCardDashboard
           ${isTransitioning ? 'opacity-0 scale-95' : 'opacity-100 scale-100'}
         `}>
           {currentUsers.map((user, index) => (
-            <div key={`${currentPage}-${index}`} className="relative">
-              {user.name.toLowerCase() === 'hxl7' && (
+            <div key={`${currentPage}-${index}`} className="relative flex justify-center">
+              {user.name.toLowerCase() === 'rias' && (
                 <a
                   href="/bio"
-                  className="absolute -top-6 left-1/2 -translate-x-1/2 text-purple-400 text-lg font-bold z-10"
+                  className="absolute -top-6 left-1/2 -translate-x-1/2 text-purple-400 text-lg font-bold"
                   style={{
                     textShadow: '0 0 5px #a855f7, 0 0 10px #a855f7, 0 0 20px #a855f7',
                     animation: 'pulse 2s infinite'
@@ -114,7 +109,6 @@ export const UserCardDashboard = ({ users, usersPerPage = 3 }: UserCardDashboard
         </div>
       </div>
 
-      {/* Progress Indicator */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-2">
         {Array.from({ length: totalPages }, (_, index) => (
           <button
@@ -132,6 +126,13 @@ export const UserCardDashboard = ({ users, usersPerPage = 3 }: UserCardDashboard
           />
         ))}
       </div>
+
+      <style>{`
+        @keyframes pulse {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0.6; }
+        }
+      `}</style>
     </div>
   );
 };
