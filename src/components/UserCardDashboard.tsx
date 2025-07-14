@@ -1,4 +1,3 @@
-
 import { useState, useEffect, useCallback } from 'react';
 import { UserCard } from './UserCard';
 import { NavigationArrows } from './NavigationArrows';
@@ -96,11 +95,21 @@ export const UserCardDashboard = ({ users, usersPerPage = 3 }: UserCardDashboard
           ${isTransitioning ? 'opacity-0 scale-95' : 'opacity-100 scale-100'}
         `}>
           {currentUsers.map((user, index) => (
-            <UserCard
-              key={`${currentPage}-${index}`}
-              user={user}
-              isActive={!isTransitioning}
-            />
+            <div key={`${currentPage}-${index}`} className="relative">
+              {user.name.toLowerCase() === 'hxl7' && (
+                <a
+                  href="/bio"
+                  className="absolute -top-6 left-1/2 -translate-x-1/2 text-purple-400 text-lg font-bold z-10"
+                  style={{
+                    textShadow: '0 0 5px #a855f7, 0 0 10px #a855f7, 0 0 20px #a855f7',
+                    animation: 'pulse 2s infinite'
+                  }}
+                >
+                  BIO
+                </a>
+              )}
+              <UserCard user={user} isActive={!isTransitioning} />
+            </div>
           ))}
         </div>
       </div>
